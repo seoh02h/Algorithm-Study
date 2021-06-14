@@ -1,14 +1,14 @@
-import heapq
+import heapq_ex
 from collections import defaultdict
 
 def encode(frequency):
     heap = [[weight, [symbol, '']] for symbol, weight in frequency.items()]
     print(heap)
-    heapq.heapify(heap)
+    heapq_ex.heapify(heap)
     while len(heap) > 1:
-        left = heapq.heappop(heap)
+        left = heapq_ex.heappop(heap)
         print("LLL",left,left[1:])
-        right = heapq.heappop(heap)
+        right = heapq_ex.heappop(heap)
         print("HHH",right)
         for pair in left[1:]:
             print("PPP",pair, pair[1])
@@ -18,11 +18,11 @@ def encode(frequency):
         print("OOO",[left[0] + right[0]])
         print("RRR", left[1:] + right[1:])
         print("SSS",[left[0] + right[0]] + left[1:] + right[1:])
-        heapq.heappush(heap, [left[0] + right[0]] + left[1:] + right[1:])
+        heapq_ex.heappush(heap, [left[0] + right[0]] + left[1:] + right[1:])
 #    print("WWW",heapq.heappop(heap)[1][1])
 #    print("WWW",heapq.heappop(heap)[1:])
 #    print("WWW",heapq.heappop(heap))
-    return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[1]),p))
+    return sorted(heapq_ex.heappop(heap)[1:], key=lambda p: (len(p[1]), p))
 data="fuLL"
 frequency = defaultdict(int)
 
