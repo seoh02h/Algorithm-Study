@@ -14,10 +14,10 @@ def s_s(i, weight, total, include):
             include[i+1]=0
             s_s(i+1,weight,total-w[i+1],include)
 
-n=4
-w=[1, 2, 8, 4]
+n=3
+w=[1, 2,3]
 w.sort()
-W=6
+W=3
 global cnt_node
 cnt_node = 0
 print("items =",w, "W =", W)

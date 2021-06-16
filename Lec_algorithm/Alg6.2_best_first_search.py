@@ -72,10 +72,10 @@ def compBound(u):
 
 global cnt
 # heap이 minheap이라 bound를 계산하여 -를 하여 리턴한다. 비교를 < maxProfit으로 수행한다.
-n = 4
-W = 16
-p = [40, 30, 50, 10]
-w = [2, 5, 10, 5]
+n = 3
+W = 10
+p = [12, 25, 16]
+w = [2, 5, 4]
 include = [0] * n
 
 cnt = 0
