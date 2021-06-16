@@ -1,3 +1,5 @@
+# 첫 번째 해까지
+
 import sys
 def promising(i,col):
     k=0

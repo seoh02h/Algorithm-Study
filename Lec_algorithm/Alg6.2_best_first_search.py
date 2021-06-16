@@ -14,16 +14,19 @@ class Node:
 def kp_Best_FS():
     global maxProfit
     global bestset
+    global cnt
     temp = n * [0]
     v = Node(-1, 0, 0, 0.0, temp)
 
     v.bound = compBound(v)
     print("A", v.bound)
+    cnt +=1
     q = queue.PriorityQueue()
     q.put((v.bound, v))
     while not q.empty():
         v.bound, v = q.get()
         print("B", v.bound)
+
         if (v.bound < maxProfit):
             u = Node(0, 0, 0, 0.0, temp)
             u.level = v.level + 1
@@ -33,6 +36,7 @@ def kp_Best_FS():
             u.include[u.level] = 1
             u.bound = compBound(u)
             print("level include profit bound ", u.level, u.include, u.profit, u.bound)
+            cnt += 1
             if u.weight <= W and u.profit > maxProfit:
                 maxProfit = -u.profit
                 bestset = u.include[:]
@@ -46,6 +50,7 @@ def kp_Best_FS():
             u.level = v.level + 1
             u.bound = compBound(u)
             print("--level include profit bound", u.level, u.include, u.profit, u.bound)
+            cnt += 1
             if u.bound < maxProfit:
                 q.put((u.bound, u))
 
@@ -65,16 +70,18 @@ def compBound(u):
             result += (W - totweight) * p[k] / w[k]
         return -result
 
-
+global cnt
 # heap이 minheap이라 bound를 계산하여 -를 하여 리턴한다. 비교를 < maxProfit으로 수행한다.
 n = 4
 W = 16
 p = [40, 30, 50, 10]
 w = [2, 5, 10, 5]
 include = [0] * n
+
+cnt = 0
 maxProfit = 0
 bestset = n * [0]
 kp_Best_FS()
 print(bestset)
 print(maxProfit)
-
+print("탐색 노드 수 :",cnt)

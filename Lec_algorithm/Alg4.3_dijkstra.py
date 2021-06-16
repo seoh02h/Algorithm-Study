@@ -8,7 +8,7 @@ length=n*[0]
 
 save_length=n*[0]
 
-NoC = 0 #총 아크 수 = 출발점에 연결된 아크 수
+NoC = 0 #총 아크 수 - 출발점에 연결된 아크 수
 
 for i in range(1,n):
     length[i]=w[0][i]
@@ -22,6 +22,7 @@ for k in range(n-1):
     print(vnear+1)
 
     save_length[vnear] = length[vnear]
+    print("l : ", length[vnear])
 
     e = (touch[vnear],vnear)
     f.add(e)

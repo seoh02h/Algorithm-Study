@@ -1,12 +1,15 @@
 def kp(i, profit, weight):
     global bestset
     global maxp
+    global cnt
 
     if (weight <= W and profit > maxp):
         maxp = profit
         bestset = include[:]
     # best = include는 best를 include의 reference로 만든다.
     # 한 번 동일한 값을 가진 후 그 이후는 계속 동일함.
+    cnt += 1
+    print(cnt, maxp, bestset, end=", ")
     if (promising(i, weight, profit)):
         include[i + 1] = 1
         kp(i + 1, profit + p[i + 1], weight + w[i + 1])
@@ -30,6 +33,7 @@ def promising(i, weight, profit):
         k = j
         if (k <= n - 1):
             bound += (W - totweight) * p[k] / w[k]
+        print(bound)
         return bound > maxp
 
 
@@ -38,8 +42,10 @@ W = 16
 p = [40, 30, 50, 10]
 w = [2, 5, 10, 5]
 maxp = 0
+cnt = 0
 include = [0, 0, 0, 0]
 bestset = [0, 0, 0, 0]
 kp(-1, 0, 0)
 print(maxp)
 print(bestset)
+print("탐색 node 수 :" ,cnt)
